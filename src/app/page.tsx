@@ -1,3 +1,5 @@
+"use client";
+import { UseStateDemo } from "@/components/UseState/UseStateDemo";
 import { useState } from "react";
 
 export default function Home() {
@@ -9,11 +11,7 @@ export default function Home() {
 
   return (
     <div>
-      <div>Hello World</div>
-      <div>Count: {count}</div>
-      <div>
-        <button onClick={handleClick}>Add</button>
-      </div>
+      <UseStateDemo />
     </div>
   );
 }
