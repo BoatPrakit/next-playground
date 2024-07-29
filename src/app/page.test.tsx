@@ -7,14 +7,25 @@ describe("Main Page", () => {
     expect(screen.getByText("Hello World")).toBeInTheDocument();
   });
 
-  it("should click Add button and count should increase", () => {
+  it("should increase counter when click add button", () => {
     const { getByText, getByRole } = render(<Home />);
-    expect(getByText(/Count: 0/i)).toBeInTheDocument();
+    expect(getByText("0")).toBeInTheDocument();
 
     const button = getByRole("button", { name: "Add" });
     expect(button).toBeInTheDocument();
 
     fireEvent.click(button);
-    expect(getByText(/Count: 1/i)).toBeInTheDocument();
+    expect(getByText("1")).toBeInTheDocument();
   });
+
+  // it("should click Add button and count should increase", () => {
+  //   const { getByText, getByRole } = render(<Home />);
+  //   expect(getByText(/Count: 0/i)).toBeInTheDocument();
+
+  //   const button = getByRole("button", { name: "Add" });
+  //   expect(button).toBeInTheDocument();
+
+  //   fireEvent.click(button);
+  //   expect(getByText(/Count: 1/i)).toBeInTheDocument();
+  // });
 });
