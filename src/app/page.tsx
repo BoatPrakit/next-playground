@@ -7,18 +7,12 @@ import { UseStateDemo } from "@/components/UseState/UseStateDemo";
 import { useState } from "react";
 
 export default function Home() {
-  const [hideCounter, setHideCounter] = useState(false);
   return (
     <div>
       <UseStateDemo />
-      {/* <UseEffectDemo /> */}
-      {/* <UseContextDemo /> */}
       {/* <UseRefDemo /> */}
       {/* <UseEffectDemo /> */}
-      {/* <div>
-        {!hideCounter && <Counter />}
-        <div onClick={() => setHideCounter(!hideCounter)}>Toggle Counter</div>
-      </div> */}
+      {/* <UseContextDemo /> */}
     </div>
   );
 }
