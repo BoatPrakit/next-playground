@@ -1,8 +1,9 @@
 import React, { createContext, useContext, useRef, useState } from "react";
 
-const MyContext = createContext<{
+export const MyContext = createContext<{
   value: string;
-}>({ value: "" });
+  setValue: (v: string) => void;
+}>({ value: "", setValue: () => {} });
 
 export const useMyContext = () => {
   return useContext(MyContext);
@@ -18,7 +19,7 @@ export function Context() {
         type="text"
         onChange={(e: any) => setValue(e.target.value)}
       />
-      <MyContext.Provider value={{ value }}>
+      <MyContext.Provider value={{ value, setValue }}>
         <ChildOne />
       </MyContext.Provider>
     </>
@@ -42,7 +43,7 @@ function ChildTwo() {
 }
 
 function ChildThree() {
-  const { value } = useMyContext();
+  const { value } = useContext(MyContext);
   return (
     <>
       <p>Value: {value}</p>

@@ -1,9 +1,16 @@
 "use client";
 import { useParams } from "next/navigation";
-import React from "react";
+import React, { useContext } from "react";
+import { useMyContext } from "@/components/UseContext/Context";
 // URL: /context/[id]
 export default function ContextIdPage() {
   const { id } = useParams();
+  const { value } = useMyContext();
 
-  return <>Id: {id}</>;
+  return (
+    <>
+      <div>Id: {id}</div>
+      <div>value: {value}</div>
+    </>
+  );
 }
