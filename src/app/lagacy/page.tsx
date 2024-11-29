@@ -1,6 +1,7 @@
 "use client";
 
 import { TaskItem } from "@/components/TaskItem";
+import { Tasks } from "@/components/Tasks";
 import React, { useState } from "react";
 export interface Task {
   id: number;
@@ -66,16 +67,7 @@ export default function Page() {
           {"Add Task"}
         </button>
       </div>
-      <ul className={"w-1/3 flex flex-col gap-2"}>
-        {taskList.map((task) => (
-          <TaskItem
-            key={task.id}
-            onComplete={onComplete}
-            onRemove={onRemove}
-            task={task}
-          />
-        ))}
-      </ul>
+      <Tasks tasks={taskList} onComplete={onComplete} onRemove={onRemove} />
     </div>
   );
 }
