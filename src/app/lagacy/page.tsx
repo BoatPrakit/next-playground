@@ -1,7 +1,8 @@
 "use client";
 
+import { TaskItem } from "@/components/TaskItem";
 import React, { useState } from "react";
-interface Task {
+export interface Task {
   id: number;
   name: string;
   isCompleted: boolean;
@@ -67,27 +68,12 @@ export default function Page() {
       </div>
       <ul className={"w-1/3 flex flex-col gap-2"}>
         {taskList.map((task) => (
-          <li
+          <TaskItem
             key={task.id}
-            className={"flex justify-between py-3 bg-gray-400 "}
-          >
-            <div className={""}> {task.name} </div>
-            <div className="flex flex-between">
-              <button
-                disabled={task.isCompleted}
-                className={"disabled:bg-green-400 bg-blue-300"}
-                onClick={() => onComplete(task.id)}
-              >
-                {"Complete"}
-              </button>
-              <button
-                className={"w-[50px] bg-red-400"}
-                onClick={() => onRemove(task.id)}
-              >
-                {"x"}
-              </button>
-            </div>
-          </li>
+            onComplete={onComplete}
+            onRemove={onRemove}
+            task={task}
+          />
         ))}
       </ul>
     </div>
