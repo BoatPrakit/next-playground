@@ -54,7 +54,17 @@ export default function Page() {
     <div className={"min-h-screen w-full flex flex-col gap-3"}>
       <h1 className="text-center w-1/3">Todo Application</h1>
       <TaskInput onAddTask={onAddTask} />
-      <Tasks tasks={taskList} onComplete={onComplete} onRemove={onRemove} />
+      <Tasks
+        tasks={taskList}
+        renderTasks={(task) => (
+          <TaskItem
+            key={task.id}
+            onComplete={onComplete}
+            onRemove={onRemove}
+            task={task}
+          />
+        )}
+      />
     </div>
   );
 }

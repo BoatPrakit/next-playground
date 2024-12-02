@@ -1,23 +1,17 @@
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 import { TaskItem } from "./TaskItem";
 import { Task } from "@/app/lagacy/page";
 
 interface TasksProps {
   tasks: Task[];
-  onComplete: (id: number) => void;
-  onRemove: (id: number) => void;
+  renderTasks: (task: Task) => ReactNode;
 }
-export const Tasks: FC<TasksProps> = ({ tasks, onComplete, onRemove }) => {
+export const Tasks: FC<TasksProps> = ({ tasks, renderTasks: renderTask }) => {
   return (
     <ul className={"w-1/3 flex flex-col gap-2"}>
-      {tasks.map((task) => (
-        <TaskItem
-          key={task.id}
-          onComplete={onComplete}
-          onRemove={onRemove}
-          task={task}
-        />
-      ))}
+      {tasks.map((task) => {
+        return renderTask(task);
+      })}
     </ul>
   );
 };
