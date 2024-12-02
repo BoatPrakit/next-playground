@@ -8,8 +8,7 @@ describe("Tasks", () => {
         { id: 1, name: "Task 1", isCompleted: false },
         { id: 2, name: "Task 2", isCompleted: false },
       ],
-      onComplete: jest.fn(),
-      onRemove: jest.fn(),
+      renderTasks: (task: any) => <div>{task.name}</div>,
     };
     render(<Tasks {...props} />);
     expect(screen.getByText("Task 1")).toBeInTheDocument();

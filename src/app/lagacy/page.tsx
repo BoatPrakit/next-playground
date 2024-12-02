@@ -64,7 +64,17 @@ export default function Page() {
         onAddTask={onAddTask}
         onChangeTaskName={onChangeTaskName}
       />
-      <Tasks tasks={taskList} onComplete={onComplete} onRemove={onRemove} />
+      <Tasks
+        tasks={taskList}
+        renderTasks={(task) => (
+          <TaskItem
+            key={task.id}
+            onComplete={onComplete}
+            onRemove={onRemove}
+            task={task}
+          />
+        )}
+      />
     </div>
   );
 }
