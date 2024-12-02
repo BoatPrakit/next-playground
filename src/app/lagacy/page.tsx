@@ -3,7 +3,7 @@
 import { TaskInput } from "@/components/TaskInput";
 import { TaskItem } from "@/components/TaskItem";
 import { Tasks } from "@/components/Tasks";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 export interface Task {
   id: number;
   name: string;
@@ -13,6 +13,19 @@ export interface Task {
 export default function Page() {
   const [taskList, setTaskList] = useState<Task[]>([]);
   const [taskName, setTaskName] = useState("");
+
+  useEffect(() => {
+    (async () => {
+      const resp = await fetch("https://jsonplaceholder.typicode.com/todos");
+      const todos = (await resp.json()) as any[];
+      const list = todos.map((todo) => ({
+        id: todo.id,
+        name: todo.title,
+        isCompleted: todo.completed,
+      }));
+      setTaskList(list);
+    })();
+  }, []);
 
   const onAddTask = () => {
     const task = {
