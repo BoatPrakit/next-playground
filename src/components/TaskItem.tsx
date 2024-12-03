@@ -8,7 +8,7 @@ interface TaskItemProps {
 }
 export const TaskItem: FC<TaskItemProps> = ({ task, onComplete, onRemove }) => {
   return (
-    <li key={task.id} className={"flex justify-between py-3 bg-gray-400 "}>
+    <li className={"flex justify-between py-3 bg-gray-400 "}>
       <div className={""}> {task.name} </div>
       <div className="flex flex-between">
         <button

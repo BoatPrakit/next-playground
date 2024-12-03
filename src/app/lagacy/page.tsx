@@ -35,6 +35,7 @@ export default function Page() {
     };
 
     setTaskList((tasks) => [...tasks, task]);
+    setTaskName("");
   };
 
   const onChangeTaskName = (event: any) => {
