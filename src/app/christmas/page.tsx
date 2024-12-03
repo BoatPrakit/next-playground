@@ -1,6 +1,7 @@
 "use client";
 
 import { TaskInput } from "@/components/TaskInput";
+import { TaskItem } from "@/components/TaskItem";
 import { TaskItemChristmas } from "@/components/TaskItemChristmas";
 import { Tasks } from "@/components/Tasks";
 import React, { useEffect, useState } from "react";
@@ -12,6 +13,7 @@ export interface Task {
 
 export default function Page() {
   const [taskList, setTaskList] = useState<Task[]>([]);
+  const [taskName, setTaskName] = useState("");
 
   useEffect(() => {
     (async () => {
@@ -26,13 +28,19 @@ export default function Page() {
     })();
   }, []);
 
-  const onAddTask = (taskName: string) => {
+  const onAddTask = () => {
     const task = {
-      id: taskList[taskList.length - 1].id + 1,
+      id: Date.now(),
       name: taskName,
       isCompleted: false,
     };
+
     setTaskList((tasks) => [...tasks, task]);
+    setTaskName("");
+  };
+
+  const onChangeTaskName = (event: any) => {
+    setTaskName(event.target.value);
   };
 
   const onComplete = (id: number) => {
@@ -51,9 +59,13 @@ export default function Page() {
   };
 
   return (
-    <div className={"min-h-screen w-full flex flex-col gap-3 items-center"}>
-      <h1 className="text-center w-1/3">Todo ChristMas Theme</h1>
-      <TaskInput onAddTask={onAddTask} />
+    <div className={"min-h-screen w-full flex flex-col gap-3"}>
+      <h1 className="text-center w-1/3">Todo Application</h1>
+      <TaskInput
+        taskName={taskName}
+        onAddTask={onAddTask}
+        onChangeTaskName={onChangeTaskName}
+      />
       <Tasks
         tasks={taskList}
         renderTasks={(task) => (
