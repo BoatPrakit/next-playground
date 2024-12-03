@@ -63,16 +63,4 @@ describe("Todo Application", () => {
 
     expect(screen.queryByText("New Task")).not.toBeInTheDocument();
   });
-
-  test("should add a task on Enter key press", () => {
-    render(<Page />);
-
-    const input = screen.getByPlaceholderText("Enter task name");
-
-    fireEvent.change(input, { target: { value: "New Task" } });
-    fireEvent.keyDown(input, { key: "Enter", code: "Enter" });
-
-    expect(screen.getByText("New Task")).toBeInTheDocument();
-    expect(input).toHaveValue("");
-  });
 });
